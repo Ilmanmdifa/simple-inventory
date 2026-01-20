@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import SideBar from "../components/sidebar";
 import { getCurrentUser } from "@/lib/auth";
-import deleteProduct from "@/lib/actions/products";
+import { deleteProduct } from "@/lib/actions/products";
 import Pagination from "../components/pagination";
 
 export default async function InventoryPage({

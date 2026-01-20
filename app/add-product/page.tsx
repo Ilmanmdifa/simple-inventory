@@ -1,7 +1,8 @@
 import { getCurrentUser } from "@/lib/auth";
 import SideBar from "../components/sidebar";
 import Link from "next/link";
-
+import { createProduct } from "@/lib/actions/products";
+// TODO update form to use react-hook-form for better validation and UX
 export default async function addProductPage() {
   const user = await getCurrentUser();
   return (
@@ -24,7 +25,7 @@ export default async function addProductPage() {
 
         <div className="max-w-2xl">
           <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <form className="space-y-6">
+            <form className="space-y-6" action={createProduct}>
               <div>
                 <label
                   htmlFor="name"
@@ -86,7 +87,7 @@ export default async function addProductPage() {
                   htmlFor="sku"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  SKU *
+                  SKU (Optional)
                 </label>
                 <input
                   type="number"
@@ -94,7 +95,6 @@ export default async function addProductPage() {
                   name="sku"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent"
                   placeholder="Enter SKU"
-                  required
                 />
               </div>
 
@@ -103,7 +103,7 @@ export default async function addProductPage() {
                   htmlFor="lowStockAt"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  SKU *
+                  Low Stock At (Optional)
                 </label>
                 <input
                   type="number"
@@ -112,17 +112,16 @@ export default async function addProductPage() {
                   min="0"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent"
                   placeholder="Enter Low Stock Threshold"
-                  required
                 />
               </div>
 
               <div className="flex gap-5">
-                <button className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
+                <button className="cursor-pointer px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
                   Add Product
                 </button>
                 <Link
                   href="/inventory"
-                  className="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"
+                  className="px-6 py-3 bg-gray-300 text-gray-800 rounded-lg hover:bg-gray-400"
                 >
                   Cancel
                 </Link>
